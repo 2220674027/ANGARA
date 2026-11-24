@@ -514,3 +514,33 @@ body {
 .olaySecenekleri button:hover {
     filter: brightness(1.15);
 }
+/* ANGARA - POLİS BASKINI */
+
+#polisBaskiniPaneli {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+}
+
+#polisBaskiniPaneli .olayKutusu {
+    border: 2px solid #ef4444;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+}
+
+#polisBaskiniPaneli h2 {
+    color: #ef4444;
+}
+
+#polistenKac {
+    background: #ef4444;
+    color: white;
+}
+
+#polistenSaklan {
+    background: #2563eb;
+    color: white;
+}
