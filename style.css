@@ -1,0 +1,516 @@
+/* ANGARA - Oyun Tasarımı */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121820;
+    color: white;
+}
+
+/* Oyun Başlığı */
+
+header {
+    height: 90px;
+    background-color: #1e293b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #f59e0b;
+}
+
+header h1 {
+    font-size: 32px;
+    color: #f59e0b;
+}
+
+header p {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-top: 5px;
+}
+
+/* Ankara Haritası */
+
+/* ANGARA - Strateji Haritası */
+
+#map {
+    width: 100%;
+    height: calc(100vh - 90px);
+    background-color: #101827;
+}
+
+/* Harita kontrol butonları */
+
+.leaflet-control-zoom a {
+    background-color: #1e293b !important;
+    color: #f59e0b !important;
+    border-color: #334155 !important;
+}
+
+/* İlçe bilgi kutuları */
+
+.leaflet-popup-content-wrapper {
+    background-color: #1e293b;
+    color: white;
+    border-radius: 10px;
+}
+
+.leaflet-popup-tip {
+    background-color: #1e293b;
+}
+
+/* Harita Bilgi Kutuları */
+
+.leaflet-popup-content-wrapper {
+    background-color: #1e293b;
+    color: white;
+    border-radius: 10px;
+}
+
+.leaflet-popup-tip {
+    background-color: #1e293b;
+}
+/* ANGARA - Kaynak Paneli Düzeltmesi */
+
+#kaynakPaneli {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    min-height: 65px;
+    height: auto;
+    padding: 10px;
+
+    background-color: #111827;
+    border-bottom: 2px solid #f59e0b;
+    box-sizing: border-box;
+}
+
+.kaynak {
+    background-color: #1e293b;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.kaynak span {
+    color: #f59e0b;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: auto;
+}
+/* ==================================
+   ANGARA - ARABA ANİMASYONU
+================================== */
+
+.angara-araba {
+    font-size: 32px;
+    cursor: pointer;
+    user-select: none;
+
+    animation: arabaHareket 0.5s infinite alternate;
+}
+
+@keyframes arabaHareket {
+
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-4px);
+    }
+
+}
+
+
+/* ==================================
+   ANGARA - PATLAMA ANİMASYONU
+================================== */
+
+.angara-patlama {
+    font-size: 48px;
+    pointer-events: none;
+
+    animation: patlamaEfekti 0.7s ease-out forwards;
+}
+
+@keyframes patlamaEfekti {
+
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+
+}
+/* ==========================================
+   ANGARA - MAHALLE GELİŞTİRME PANELİ
+========================================== */
+
+#gelistirmePaneli {
+    display: none;
+
+    position: absolute;
+    top: 160px;
+    right: 20px;
+
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 180px);
+
+    background: #1e293b;
+    color: white;
+
+    border: 2px solid #f59e0b;
+    border-radius: 12px;
+
+    z-index: 2000;
+    overflow-y: auto;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Panel başlığı */
+
+.panelBaslik {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px;
+    background: #0f172a;
+
+    border-bottom: 2px solid #f59e0b;
+}
+
+.panelBaslik h2 {
+    margin: 0;
+    font-size: 17px;
+    color: #f59e0b;
+}
+
+/* Kapatma butonu */
+
+#panelKapat {
+    background: #ef4444;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    padding: 7px 11px;
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+#panelKapat:hover {
+    background: #dc2626;
+}
+
+/* Panel içeriği */
+
+.panelIcerik {
+    padding: 15px;
+}
+
+#aktifMahalleAdi {
+    color: #38bdf8;
+    text-align: center;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Geliştirme kartları */
+
+.gelistirmeKarti {
+    background: #334155;
+
+    padding: 15px;
+    margin-bottom: 15px;
+
+    border-radius: 10px;
+    border: 1px solid #475569;
+}
+
+.gelistirmeKarti h3 {
+    margin-top: 0;
+    color: #f8fafc;
+    font-size: 16px;
+}
+
+.gelistirmeKarti p {
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+/* Geliştirme butonları */
+
+.gelistirmeKarti button {
+    width: 100%;
+
+    padding: 12px 8px;
+
+    background: #f59e0b;
+    color: #0f172a;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.gelistirmeKarti button:hover {
+    background: #fbbf24;
+    transform: scale(1.02);
+}
+
+.gelistirmeKarti button:active {
+    transform: scale(0.98);
+}
+
+/* Küçük ekran uyumu */
+
+@media (max-width: 600px) {
+    #gelistirmePaneli {
+        top: 130px;
+        right: 10px;
+        max-height: calc(100vh - 145px);
+    }
+}
+/* ==========================================
+   ANGARA - SALDIRI PANELİ
+========================================== */
+
+#saldiriPaneli {
+    display: none;
+
+    position: absolute;
+    top: 160px;
+    right: 20px;
+
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 180px);
+
+    background: #1e293b;
+    color: white;
+
+    border: 2px solid #ef4444;
+    border-radius: 12px;
+
+    z-index: 2000;
+    overflow-y: auto;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Saldırı panelinin başlığı */
+
+#saldiriPaneli .panelBaslik {
+    border-bottom: 2px solid #ef4444;
+}
+
+#saldiriPaneli .panelBaslik h2 {
+    color: #ef4444;
+}
+
+/* Hedef mahalle adı */
+
+#hedefMahalleAdi {
+    color: #f87171;
+    text-align: center;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Saldırı başlat butonu */
+
+#saldiriBaslat {
+    width: 100%;
+
+    background: #dc2626;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 14px 10px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#saldiriBaslat:hover {
+    background: #b91c1c;
+    transform: scale(1.02);
+}
+
+#saldiriBaslat:active {
+    transform: scale(0.98);
+}
+
+/* Saldırı paneli kapatma butonu */
+
+#saldiriPanelKapat {
+    background: #ef4444;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    padding: 7px 11px;
+    cursor: pointer;
+}
+
+#saldiriPanelKapat:hover {
+    background: #dc2626;
+}
+
+/* Mobil ekran uyumu */
+
+@media (max-width: 600px) {
+    #saldiriPaneli {
+        top: 130px;
+        right: 10px;
+        max-height: calc(100vh - 145px);
+    }
+}
+/* ==========================================
+   ANGARA - SALDIRI PANELİ KONUM DÜZELTMESİ
+========================================== */
+
+#saldiriPaneli {
+    position: fixed;
+    top: 245px;
+    right: 20px;
+    left: auto;
+
+    width: 320px;
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vh - 265px);
+
+    background: #1e293b;
+    color: white;
+
+    border: 2px solid #ef4444;
+    border-radius: 12px;
+
+    z-index: 9999;
+    overflow-y: auto;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+/* ================================= */
+/* ANGARA - RASTGELE OLAY PENCERESİ */
+/* ================================= */
+
+#rastgeleOlayPaneli {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 99999;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.olayKutusu {
+    width: 90%;
+    max-width: 450px;
+    padding: 30px;
+
+    background: #1e293b;
+    border: 2px solid #f59e0b;
+    border-radius: 15px;
+
+    color: white;
+    text-align: center;
+
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+}
+
+.olayKutusu h2 {
+    color: #f59e0b;
+    margin-bottom: 20px;
+}
+
+.olayKutusu p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.olaySecenekleri {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.olaySecenekleri button {
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#yurumeyeDevamEt {
+    background: #22c55e;
+    color: white;
+}
+
+#onaCevapVer {
+    background: #ef4444;
+    color: white;
+}
+
+.olaySecenekleri button:hover {
+    filter: brightness(1.15);
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ANGARA</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🏙️ ANGARA</h1>
+        <p>Ankara'nın Hâkimi Ol!</p>
+    </header>
+    <!-- ANGARA - Kaynak Paneli -->
+
+<div id="kaynakPaneli">
+
+    <div class="kaynak">
+        💰 Altın: <span id="altin">1000</span>
+    </div>
+
+    <div class="kaynak">
+        👥 Nüfus: <span id="nufus">5000</span>
+    </div>
+
+    <div class="kaynak">
+        🤝 Dost: <span id="dost">20</span>
+    </div>
+
+    <div class="kaynak">
+        🔫 Silah: <span id="silah">10</span>
+    </div>
+
+    <div class="kaynak">
+        🏘️ Mahalle: <span id="mahalleSayisi">1</span>
+    </div>
+
+</div>
+    <div id="map"></div>
+    <!-- ==================================
+     ANGARA - MAHALLE GELİŞTİRME PANELİ
+================================== -->
+
+<div id="gelistirmePaneli">
+
+    <div class="panelBaslik">
+        <h2>🏗️ MAHALLE GELİŞTİRME</h2>
+        <button id="panelKapat" type="button">✖</button>
+    </div>
+
+    <div class="panelIcerik">
+
+        <h3 id="aktifMahalleAdi">Mahalle Seçilmedi</h3>
+
+        <!-- Savunma Merkezi -->
+
+        <div class="gelistirmeKarti">
+            <h3>🛡️ Savunma Merkezi</h3>
+
+            <p>
+                Seviye:
+                <span id="savunmaSeviye">1</span>
+            </p>
+
+            <button id="savunmaGelistir" type="button">
+                GELİŞTİR — 500 ALTIN
+            </button>
+        </div>
+        <div id="saldiriPaneli">
+
+    <div class="panelBaslik">
+        <h2>⚔️ MAHALLE SALDIRISI</h2>
+        <button id="saldiriPanelKapat" type="button">✖</button>
+    </div>
+
+    <div class="panelIcerik">
+
+        <h3 id="hedefMahalleAdi">Hedef Seçilmedi</h3>
+
+        <div class="gelistirmeKarti">
+            <h3>🛡️ Düşman Savunması</h3>
+            <p>
+                Savunma Gücü:
+                <span id="dusmanSavunma">0</span>
+            </p>
+        </div>
+
+        <div class="gelistirmeKarti">
+            <h3>⚔️ Bizim Ordumuz</h3>
+
+            <p>
+                🤝 Dost:
+                <span id="saldiriDost">0</span>
+            </p>
+
+            <p>
+                🔫 Silah:
+                <span id="saldiriSilah">0</span>
+            </p>
+
+            <p>
+                ⚔️ Saldırı Gücü:
+                <span id="saldiriGucu">0</span>
+            </p>
+        </div>
+
+        <div class="gelistirmeKarti">
+            <button id="saldiriBaslat" type="button">
+                ⚔️ SALDIRI BAŞLAT
+            </button>
+        </div>
+
+    </div>
+
+</div>
+        <!-- ==================================
+     ANGARA - SALDIRI PANELİ
+================================== -->
+    
+
+
+        <!-- Dost Kazanma -->
+
+        <div class="gelistirmeKarti">
+            <h3>🤝 Dostlar</h3>
+
+            <p>Mahallene yeni dostlar kazandır.</p>
+
+            <button id="dostKazan" type="button">
+                +5 DOST — 100 ALTIN
+            </button>
+        </div>
+
+        <!-- Silah Satın Alma -->
+
+        <div class="gelistirmeKarti">
+            <h3>🔫 Silahlandırma</h3>
+
+            <p>Dostlarını güçlendirmek için silah al.</p>
+
+            <button id="silahAl" type="button">
+                +5 SİLAH — 200 ALTIN
+            </button>
+        </div>
+
+    </div>
+
+</div>
+<!-- ================================= -->
+<!-- ANGARA - RASTGELE OLAY PENCERESİ -->
+<!-- ================================= -->
+
+<div id="rastgeleOlayPaneli">
+
+    <div class="olayKutusu">
+
+        <h2>🚶 GİZEMLİ YABANCI</h2>
+
+        <p>Yolda yürürken biri sana seslendi!</p>
+
+        <div class="olaySecenekleri">
+
+            <button id="yurumeyeDevamEt" type="button">
+                🚶 Yürümeye Devam Et
+            </button>
+
+            <button id="onaCevapVer" type="button">
+                🗣️ Ona Cevap Ver
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ANGARA - POLİS BASKINI -->
+
+<div id="polisBaskiniPaneli">
+
+    <div class="olayKutusu">
+
+        <h2>🚨 POLİS BASKINI!</h2>
+
+        <p>
+            Mahallende polis baskını başladı!
+            Ne yapacaksın?
+        </p>
+
+        <div class="olaySecenekleri">
+
+            <button id="polistenKac" type="button">
+                🏃 Kaçmaya Başla
+            </button>
+
+            <button id="polistenSaklan" type="button">
+                🫣 Saklan
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    <!-- Leaflet Harita Kütüphanesi -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Turf.js Coğrafi Hesaplama Kütüphanesi -->
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+
+<!-- ANGARA Oyun Kodları -->
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
